@@ -5,11 +5,13 @@ public class Ball {
     private int kord_y;
     private int radius = 100;
     private int speed;
-    private int speedX;
-    private int speedY;
+    private int speedX = 0;
+    private int speedY = 0;
     private static double multiplierSpeed = 2.5;
+    private int abroad = 0;
+    private OnBallPositionChangeListener listenerPosChange;
+    private OnBallAbroadListener listenerAbroad;
 
-    private OnBallPositionChangeListener listener;
 
     public int getKord_x() {
         return kord_x;
@@ -59,6 +61,14 @@ public class Ball {
         this.speedY = speedY;
     }
 
+    public int getAbroad() {
+        return abroad;
+    }
+
+    public void setAbroad(int abroad) {
+        this.abroad = abroad;
+    }
+
     public static double getMultiplierSpeed() {
         return multiplierSpeed;
     }
@@ -67,20 +77,34 @@ public class Ball {
         Ball.multiplierSpeed = multiplierSpeed;
     }
 
-    //interface
+    //interface PositionChange
     public void setOnBallPositionChangeListener(OnBallPositionChangeListener listener) {
-        this.listener = listener;
+        this.listenerPosChange = listener;
     }
 
     public void removeOnBallPositionChangeListener() {
-        this.listener = null;
+        this.listenerPosChange = null;
     }
 
     public void updateSpeed() {
         speed = (int) Math.round(Math.sqrt(speedX*speedX + speedY*speedY));
-        if (listener != null) {
-            listener.onPositionChanged(speed, speedX, speedY);
+        if (listenerPosChange != null) {
+            listenerPosChange.onPositionChanged(speed, speedX, speedY);
         }
     }
 
+    //interface Abroad
+    public void setOnBallAbroadListener(OnBallAbroadListener listener) {
+        this.listenerAbroad = listener;
+    }
+
+    public void removeOnBallAbroadListener(){
+        this.listenerAbroad = null;
+    }
+
+    public void updateAbroad() {
+        if (listenerAbroad != null) {
+            listenerAbroad.onAbroad(abroad);
+        }
+    }
 }

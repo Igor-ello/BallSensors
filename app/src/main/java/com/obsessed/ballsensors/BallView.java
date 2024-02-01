@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 public class BallView extends View {
     public Ball ball;
     public ConvertingCornerToKord cornerToKord;
-    private boolean abroad = false;
+    private boolean firstAbroad = false;
 
 
     public BallView(Context context) {
@@ -24,10 +24,12 @@ public class BallView extends View {
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
-        if(!abroad){
-            abroad = true;
+        if(!firstAbroad){
+            firstAbroad = true;
             ball.setKord_x(canvas.getWidth()/2);
             ball.setKord_y(canvas.getHeight()/2);
+            ball.updateSpeed();
+            ball.updateAbroad();
         }
 
         Paint paint = new Paint();
@@ -49,6 +51,8 @@ public class BallView extends View {
         if(ball.getKord_x() <= 0 || ball.getKord_y() <= 0 || ball.getKord_x() >= canvas.getWidth() || ball.getKord_y() >= canvas.getHeight()){
             ball.setKord_x(canvas.getWidth()/2);
             ball.setKord_y(canvas.getHeight()/2);
+            ball.setAbroad(ball.getAbroad()+1);
+            ball.updateAbroad();
         }
 
         invalidate(); //обновление экрана

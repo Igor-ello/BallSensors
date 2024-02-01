@@ -71,11 +71,11 @@
 
         <TextView
             style="@style/Text"
-            android:text="@string/defeat">
+            android:text="@string/abroad">
         </TextView>
 
         <TextView
-            android:id="@+id/defeat"
+            android:id="@+id/abroad"
             style="@style/Text">
         </TextView>
     </LinearLayout>
