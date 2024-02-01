@@ -9,14 +9,16 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements OnBallPositionChangeListener {
     Sensors sensors;
     TextView speed, speedX, speedY, defeat;
+    ConvertingCornerToKord cornerToKord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        cornerToKord = new ConvertingCornerToKord();
 
         FrameLayout container = findViewById(R.id.ball);
-        BallView ballView = new BallView(this);
+        BallView ballView = new BallView(this, cornerToKord);
         container.addView(ballView);
 
         sensors = new Sensors(this);
@@ -26,15 +28,16 @@ public class MainActivity extends AppCompatActivity implements OnBallPositionCha
         speedY = findViewById(R.id.speedY);
         defeat = findViewById(R.id.defeat);
 
-        ballView.ball.setOnBallPositionChangeListener(this);
+        cornerToKord.setOnBallPositionChangeListener(this);
     }
 
     @Override
     public void onPositionChanged(int x, int y) {
-        // Обновите текст в TextView с учетом новых координат x и y
-        speed.setText(String.valueOf(Math.round(Math.sqrt(x+y))));
-        speedX.setText("X: " + x);
-        speedY.setText("Y: " + y);
+        x = Math.abs(x);
+        y = Math.abs(y);
+        speed.setText(String.valueOf(Math.round(Math.sqrt(x*x+y*y))));
+        speedX.setText(" " + x);
+        speedY.setText(" " + y);
     }
 
     @Override

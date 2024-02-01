@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 public class ConvertingCornerToKord {
     private static double multiplier = Ball.getMultiplierSpeed();
     private static int cornerX, cornerY;
+    private OnBallPositionChangeListener listener;
 
     public static int getKordX() {
         return (int) (cornerX * multiplier);
@@ -27,5 +28,21 @@ public class ConvertingCornerToKord {
     }
     public void setCornerY(int cornerY) {
         this.cornerY = cornerY;
+    }
+
+
+    //interface
+    public void setOnBallPositionChangeListener(OnBallPositionChangeListener listener) {
+        this.listener = listener;
+    }
+
+    public void removeOnBallPositionChangeListener() {
+        this.listener = null;
+    }
+
+    public void updatePosition() {
+        if (listener != null) {
+            listener.onPositionChanged(getKordX(), getKordY());
+        }
     }
 }

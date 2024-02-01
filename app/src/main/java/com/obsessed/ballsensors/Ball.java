@@ -6,13 +6,6 @@ public class Ball {
     private int radius = 100;
     private int speed = 0;
     private static double multiplierSpeed = 10;
-    private OnBallPositionChangeListener listener;
-
-    public Ball(int kord_x, int kord_y, int multiplierSpeed) {
-        this.kord_x = kord_x;
-        this.kord_y = kord_y;
-        this.multiplierSpeed = multiplierSpeed;
-    }
 
     public int getKord_x() {
         return kord_x;
@@ -54,18 +47,4 @@ public class Ball {
         Ball.multiplierSpeed = multiplierSpeed;
     }
 
-    //interface
-    public void setOnBallPositionChangeListener(OnBallPositionChangeListener listener) {
-        this.listener = listener;
-    }
-
-    public void removeOnBallPositionChangeListener() {
-        this.listener = null;
-    }
-
-    public void updatePosition() {
-        if (listener != null) {
-            listener.onPositionChanged(kord_x, kord_y);
-        }
-    }
 }
