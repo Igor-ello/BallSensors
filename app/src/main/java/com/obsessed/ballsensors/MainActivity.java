@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements OnBallPositionChangeListener, OnBallAbroadListener {
     Sensors sensors;
     TextView tv_speed, tv_speedX, tv_speedY, tv_abroad;
+    BallView ballView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements OnBallPositionCha
         setContentView(R.layout.activity_main);
 
         FrameLayout container = findViewById(R.id.ball);
-        BallView ballView = new BallView(this);
+        ballView = new BallView(this);
         container.addView(ballView);
 
         sensors = new Sensors(this);
@@ -56,5 +57,10 @@ public class MainActivity extends AppCompatActivity implements OnBallPositionCha
         sensors.unregisterSensors();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ballView.ball.removeOnBallPositionChangeListener();
+        ballView.ball.removeOnBallAbroadListener();
+    }
 }
