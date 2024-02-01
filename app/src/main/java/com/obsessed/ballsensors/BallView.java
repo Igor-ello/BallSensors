@@ -9,11 +9,12 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-public class MyView extends View {
-    Ball ball;
+public class BallView extends View {
+    public Ball ball;
     boolean abroad = false;
 
-    public MyView(Context context) {
+
+    public BallView(Context context) {
         super(context);
         ball = new Ball(0, 0, 1);
     }
@@ -35,6 +36,7 @@ public class MyView extends View {
         ConvertingCornerToKord cornerToKord = new ConvertingCornerToKord();
         ball.setKord_x(ball.getKord_x() + cornerToKord.getKordX());
         ball.setKord_y(ball.getKord_y() + cornerToKord.getKordY());
+        ball.updatePosition();
 
         Log.d("MyLog", ball.getKord_x() + " " + ball.getKord_y());
         Log.d("MyLog", cornerToKord.getCornerX() + " " + cornerToKord.getCornerY());
