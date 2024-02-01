@@ -15,10 +15,10 @@ public class BallView extends View {
     private boolean abroad = false;
 
 
-    public BallView(Context context, ConvertingCornerToKord cornerToKord) {
+    public BallView(Context context) {
         super(context);
         ball = new Ball();
-        this.cornerToKord = cornerToKord;
+        cornerToKord = new ConvertingCornerToKord();
     }
 
     @Override
@@ -35,9 +35,11 @@ public class BallView extends View {
         paint.setStyle(Paint.Style.FILL);
 
         //Logic
-        ball.setKord_x(ball.getKord_x() + cornerToKord.getKordX());
-        ball.setKord_y(ball.getKord_y() + cornerToKord.getKordY());
-        cornerToKord.updatePosition();
+        ball.setSpeedX(cornerToKord.getSpeedX());
+        ball.setSpeedY(cornerToKord.getSpeedY());
+        ball.setKord_x(ball.getKord_x() + ball.getSpeedX());
+        ball.setKord_y(ball.getKord_y() + ball.getSpeedY());
+        ball.updateSpeed();
 
         Log.d("MyLog", ball.getKord_x() + " " + ball.getKord_y());
         Log.d("MyLog", cornerToKord.getCornerX() + " " + cornerToKord.getCornerY());

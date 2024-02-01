@@ -4,8 +4,12 @@ public class Ball {
     private int kord_x;
     private int kord_y;
     private int radius = 100;
-    private int speed = 0;
-    private static double multiplierSpeed = 10;
+    private int speed;
+    private int speedX;
+    private int speedY;
+    private static double multiplierSpeed = 2.5;
+
+    private OnBallPositionChangeListener listener;
 
     public int getKord_x() {
         return kord_x;
@@ -39,12 +43,44 @@ public class Ball {
         this.speed = speed;
     }
 
+    public int getSpeedX() {
+        return speedX;
+    }
+
+    public void setSpeedX(int speedX) {
+        this.speedX = speedX;
+    }
+
+    public int getSpeedY() {
+        return speedY;
+    }
+
+    public void setSpeedY(int speedY) {
+        this.speedY = speedY;
+    }
+
     public static double getMultiplierSpeed() {
         return multiplierSpeed;
     }
 
     public static void setMultiplierSpeed(double multiplierSpeed) {
         Ball.multiplierSpeed = multiplierSpeed;
+    }
+
+    //interface
+    public void setOnBallPositionChangeListener(OnBallPositionChangeListener listener) {
+        this.listener = listener;
+    }
+
+    public void removeOnBallPositionChangeListener() {
+        this.listener = null;
+    }
+
+    public void updateSpeed() {
+        speed = (int) Math.round(Math.sqrt(speedX*speedX + speedY*speedY));
+        if (listener != null) {
+            listener.onPositionChanged(speed, speedX, speedY);
+        }
     }
 
 }
