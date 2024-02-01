@@ -3,16 +3,15 @@ package com.obsessed.ballsensors;
 import android.graphics.Canvas;
 
 public class ConvertingCornerToKord {
-    private static double multiplier = 1;
+    private static double multiplier = Ball.getMultiplierSpeed();
     private static int cornerX, cornerY;
 
-    public static int getKordX(Canvas canvas) {
+    public static int getKordX() {
         return (int) (cornerX * multiplier);
     }
 
-    public static int getKordY(Canvas canvas) {
-        return -1 *
-                (int) (cornerY * multiplier);
+    public static int getKordY() {
+        return -1 * (int) (cornerY * multiplier);
     }
 
 
