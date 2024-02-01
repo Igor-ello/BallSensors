@@ -5,7 +5,12 @@ public class ConvertingCornerToKord {
     private static int cornerX, cornerY;
 
     public static int getSpeedX() {
-        return (int) (cornerX * multiplier);
+        if(Math.abs(cornerX) > 90) {
+            if(cornerX > 0)
+                return (int) ((180-cornerX) * multiplier);
+            else return (int) (-1*(180+cornerX) * multiplier);
+        }
+        else return (int) (cornerX * multiplier);
     }
 
     public static int getSpeedY() {
