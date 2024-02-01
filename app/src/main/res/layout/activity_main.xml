@@ -1,89 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <TextView
-            style="@style/Text"
-            android:text="@string/speed">
-        </TextView>
-
-        <TextView
-            android:id="@+id/speed"
-            style="@style/Text">
-        </TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center">
 
             <TextView
                 style="@style/Text"
-                android:text="@string/speed_x">
+                android:text="@string/speed">
             </TextView>
 
             <TextView
-                android:id="@+id/speedX"
+                android:id="@+id/speed"
                 style="@style/Text">
             </TextView>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/Text"
+                    android:text="@string/speed_x">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/speedX"
+                    style="@style/Text">
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/Text"
+                    android:text="@string/speed_y">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/speedY"
+                    style="@style/Text">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center">
 
             <TextView
                 style="@style/Text"
-                android:text="@string/speed_y">
+                android:text="@string/abroad">
             </TextView>
 
             <TextView
-                android:id="@+id/speedY"
+                android:id="@+id/abroad"
                 style="@style/Text">
             </TextView>
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <TextView
-            style="@style/Text"
-            android:text="@string/abroad">
-        </TextView>
-
-        <TextView
-            android:id="@+id/abroad"
-            style="@style/Text">
-        </TextView>
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/ball"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     </FrameLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
